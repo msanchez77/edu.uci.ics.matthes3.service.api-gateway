@@ -1,0 +1,33 @@
+package edu.uci.ics.matthes3.service.api_gateway.models.ResponseModels.Billing;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.uci.ics.matthes3.service.api_gateway.models.ObjectModels.CreditCardModel;
+
+public class CreditCardResponseModel extends ResponseModel {
+    @JsonIgnore
+    private CreditCardModel creditCard;
+
+    public CreditCardResponseModel(
+            @JsonProperty(value = "resultCode", required = true) int resultCode,
+            @JsonProperty(value = "message", required = true) String message) {
+        super(resultCode, message);
+    }
+
+    public CreditCardResponseModel(
+            @JsonProperty(value = "resultCode", required = true) int resultCode,
+            @JsonProperty(value = "message", required = true) String message,
+            @JsonProperty("creditcard") CreditCardModel creditCard) {
+        super(resultCode, message);
+        this.creditCard = creditCard;
+    }
+
+    @JsonProperty(value="creditcard")
+    public CreditCardModel getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(CreditCardModel creditCard) {
+        this.creditCard = creditCard;
+    }
+}
